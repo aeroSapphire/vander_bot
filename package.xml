@@ -7,6 +7,8 @@
   <maintainer email="my_email@email.com">aeroSapphire</maintainer>
   <license>TODO: License declaration</license>
 
+  <depend>robot_localization</depend>
+
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>

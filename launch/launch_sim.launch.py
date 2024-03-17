@@ -5,6 +5,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
@@ -52,6 +53,13 @@ def generate_launch_description():
         arguments=["joint_broad"],
     )
 
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[os.path.join(get_package_share_directory(package_name),'config','ekf.yaml')]
+    )  
 
 
     # Launch them all!
@@ -60,5 +68,7 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         diff_drive_spawner,
-        joint_broad_spawner
+        joint_broad_spawner,
+        robot_localization_node,
+        DeclareLaunchArgument(name='use_sim_time', default_value='True', description='Flag to enable use_sim_time')
     ])
