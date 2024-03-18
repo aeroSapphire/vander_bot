@@ -99,6 +99,12 @@
         </sensor>
       </gazebo>-->
 
+      <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0.1 0 0.1"/>
+    </joint>
+
     <link name="imu_link">
         <visual>
             <geometry>
@@ -117,11 +123,6 @@
         
     </link>
     
-    <joint name="imu_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="imu_link"/>
-        <origin xyz="0.1 0 0.1"/>
-    </joint>
     
     <gazebo reference="imu_link">
         <sensor name="imu_sensor" type="imu">
